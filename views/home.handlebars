@@ -1,0 +1,20 @@
+<h1>{{type}} Request Received</h1>
+  {{#if URL}}
+  <h3>From URL</h3>
+  <ul>
+    {{#each dataURL}}
+      <li>{{this.name}}: {{this.value}}
+    {{/each}}
+  </ul>
+  {{/if}}
+
+  {{#if Body}}
+  <h3>From Body</h3>
+  <ul>
+  {{#each dataBody}}
+    <li>{{this.name}}: {{this.value}}
+  {{/each}}
+  </ul>
+  {{/if}}
+
+
