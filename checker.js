@@ -4,15 +4,22 @@ var express = require('express');
 var app = express();
 var handlebars = require('express-handlebars').create({defaultLayout: 'main'});
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
+app.use(session({secret:'Emily'}));
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-app.set('port', 5000);
+app.set('port', 3000);
 
-// End of instructor's code
+app.get('/count', function(req, res) {
+  var context = {};
+  context.count = req.session.count || 0;
+  req.session.count = context.count + 1;
+  res.render('counter', context);
+});
 
 app.get('/', function(req, res) {
   // URL data
